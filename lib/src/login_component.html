@@ -1,9 +1,10 @@
 <form class="flex">
     <label for="username">Логин:</label>
-    <input id="username" type="text" autofocus="autofocus"/>
+    <input id="username" type="text" autofocus="autofocus" [(ngModel)]="username"/>
     <label for="password">Пароль:</label>
-    <input id="password" type="password"/>
-    <button>Войти</button>
+    <input id="password" type="password" [(ngModel)]="password"/>
+    <div style="height: 20px"></div>
+    <button (click)="login()">Войти</button>
     <button>Зарегистрироваться</button>
-    <div id="message">Message</div>
+    <div id="message">{{ message }}</div>
 </form>
