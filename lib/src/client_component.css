@@ -21,12 +21,6 @@
     color: gray;
 }
 
-.flex {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 #logo {
     max-width: 128px;
     max-height: 128px;

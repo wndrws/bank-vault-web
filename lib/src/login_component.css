@@ -1,0 +1,21 @@
+form {
+    max-width: 200px;
+    margin: auto;
+}
+
+input, button {
+    padding: 3px;
+    margin: 5px;
+}
+
+label {
+    padding-left: 8px;
+    padding-top: 8px;
+}
+
+#message {
+    margin-top: 15px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
