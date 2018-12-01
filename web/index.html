@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+        // Details: https://webdev.dartlang.org/angular/guide/router
+        (function () {
+            var m = document.location.pathname.match(/^(\/[-\w]+)+\/web($|\/)/);
+            document.write('<base href="' + (m ? m[0] : '/') + '" />');
+        }());
+    </script>
+
     <title>bank_vault</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
