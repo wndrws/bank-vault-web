@@ -1,0 +1,104 @@
+:host {
+    /* This is equivalent of the 'body' selector of a page. */
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    background: #f4f4f4;
+    padding: 3px;
+}
+
+#g-title { grid-column: 2; grid-row: 1; }
+#g-clock { grid-column: 3; grid-row: 1; }
+#g-table { grid-column: 2 / span 2; grid-row: 2 / span 2; }
+#g-menu { grid-column: 1; grid-row: 1 / span 2; }
+#g-exit { grid-column: 1; grid-row: 3; }
+
+#grid > div {
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.clock {
+    text-align: right;
+    color: gray;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+#logo {
+    max-width: 128px;
+    max-height: 128px;
+    align-self: center;
+}
+
+.exit-box {
+    text-align: center;
+    font-size: smaller;
+}
+
+.subtle-a {
+    text-decoration: none;
+}
+
+.subtle-a:hover {
+    color: cornflowerblue;
+}
+
+.big-text {
+    font-size: 120%;
+}
+
+button {
+    padding: 5px;
+    font-size: 90%;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+table {
+    margin-top: -5px;
+    font-size: 90%;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid lightgrey;
+}
+
+th, td {
+    padding: 5px;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #dde8f5;
+}
+
+tr.selected {
+    color: white;
+    background-color: #0096c9;
+}
+
+th {
+    background: linear-gradient(to bottom, #ebebeb, #d9d9d9);
+}
