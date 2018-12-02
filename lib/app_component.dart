@@ -2,6 +2,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 
 import 'package:bank_vault/src/routing/routes.dart';
+import 'package:bank_vault/src/services/local_user_storage.dart';
 import 'package:bank_vault/src/services/user_service.dart';
 
 // AngularDart info: https://webdev.dartlang.org/angular
@@ -12,7 +13,7 @@ import 'package:bank_vault/src/services/user_service.dart';
   styleUrls: ['app_component.css'],
   templateUrl: 'app_component.html',
   directives: [routerDirectives],
-  providers: [ClassProvider(UserService)],
+  providers: [ClassProvider(UserService), ClassProvider(LocalUserStorage)],
   exports: [Routes]
 )
 class AppComponent {
