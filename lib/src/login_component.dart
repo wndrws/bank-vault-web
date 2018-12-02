@@ -45,4 +45,9 @@ class LoginComponent {
     );
     return int.tryParse(response.body) ?? -1;
   }
+
+  Future<NavigationResult> register() async {
+    _userService.setCredentials(username, password);
+    return _router.navigate(RoutePaths.register.toUrl());
+  }
 }

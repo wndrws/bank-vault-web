@@ -1,0 +1,47 @@
+<form class="flex">
+    <div class="big-text subtitle">Паспортные данные</div>
+
+    <div class="form-line">
+        <label>Серия и номер:</label>
+        <material-input type="text" required [(ngModel)]="serial"></material-input>
+    </div>
+    <div class="form-line">
+        <label>Фамилия:</label>
+        <material-input type="text" required [(ngModel)]="lastName"></material-input>
+    </div>
+    <div class="form-line">
+        <label>Имя:</label>
+        <material-input type="text" required [(ngModel)]="firstName"></material-input>
+    </div>
+    <div class="form-line">
+        <label>Отчество:</label>
+        <material-input type="text" [(ngModel)]="patronymic"></material-input>
+    </div>
+    <div class="form-line">
+        <label>Дата рождения:</label>
+        <!--<div style="flex-grow: 1"></div>-->
+        <material-datepicker [(date)]="birthDate" [minDate]="limitToRange.start"
+                             [maxDate]="limitToRange.end"></material-datepicker>
+    </div>
+
+    <div class="big-text subtitle">Контактные данные</div>
+
+    <div class="form-line">
+        <label>Телефон:</label>
+        <material-input type="tel" [(ngModel)]="phone"></material-input>
+    </div>
+    <div class="form-line">
+        <label>E-mail:</label>
+        <material-input type="email" [(ngModel)]="email"></material-input>
+    </div>
+
+    <div class="yes-no-block">
+        <material-yes-no-buttons
+                reverse yesHighlighted
+                yesText="ОК"
+                noText="Отмена"
+                (yes)="register()"
+                (no)="cancel()">
+        </material-yes-no-buttons>
+    </div>
+</form>

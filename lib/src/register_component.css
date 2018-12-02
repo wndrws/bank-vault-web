@@ -1,0 +1,32 @@
+form {
+    max-width: 250px;
+    margin: auto;
+}
+
+material-input {
+    flex-grow: 1;
+}
+
+.form-line {
+    display: flex;
+    align-items: baseline;
+}
+
+label {
+    width: 150px;
+    margin-left: -150px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.subtitle {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.yes-no-block {
+    margin-top: 5px;
+    align-self: center;
+}

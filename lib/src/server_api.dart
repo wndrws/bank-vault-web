@@ -3,5 +3,7 @@ class ServerApi {
 
   static const String loginUrl = _root + "login";
 
+  static const String registerUrl = _root + "register";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
 }
