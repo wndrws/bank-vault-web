@@ -3,9 +3,11 @@ import 'dart:html';
 class LocalUserStorage {
   static const String CURRENT_USER_ID_KEY = "bank_vault_currentUserId";
 
+  static const int NO_USER_ID = -1;
+
   final Storage _localStorage = window.localStorage;
 
-  int _currentUserId = -1;
+  int _currentUserId = NO_USER_ID;
   String _username = "";
   String _password = "";
 
@@ -20,7 +22,7 @@ class LocalUserStorage {
   String get password => _password;
 
   void reset() {
-    _currentUserId = -1;
+    _currentUserId = NO_USER_ID;
     _localStorage.remove(CURRENT_USER_ID_KEY);
     _username = "";
     _password = "";

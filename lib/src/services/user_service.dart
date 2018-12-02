@@ -46,8 +46,8 @@ class UserService {
         headers: ServerApi.headers,
         body: json.encode({"login": user, "password": pass})
     );
-    final int userId = int.tryParse(response.body) ?? -1;
-    if (userId != -1) {
+    final int userId = int.tryParse(response.body) ?? LocalUserStorage.NO_USER_ID;
+    if (userId != LocalUserStorage.NO_USER_ID) {
       _userStorage.setCurrentUser(userId);
       return true;
     }
@@ -56,5 +56,9 @@ class UserService {
 
   void logout() {
     _userStorage.reset();
+  }
+
+  bool isUserLoggedIn() {
+    return _userStorage.currentUserId != LocalUserStorage.NO_USER_ID;
   }
 }

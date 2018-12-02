@@ -14,7 +14,7 @@ import 'package:bank_vault/src/routing/route_paths.dart';
   templateUrl: 'login_component.html',
   directives: [routerDirectives, formDirectives]
 )
-class LoginComponent {
+class LoginComponent implements OnActivate {
   String message = "";
   String username = "";
   String password = "";
@@ -37,5 +37,12 @@ class LoginComponent {
   Future<NavigationResult> register() async {
     _localUserStorage.setCredentials(username, password);
     return _router.navigate(RoutePaths.register.toUrl());
+  }
+
+  @override
+  void onActivate(RouterState previous, RouterState current) {
+    if (_userService.isUserLoggedIn()) {
+      _router.navigate(RoutePaths.home.toUrl());
+    }
   }
 }
