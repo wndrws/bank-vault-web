@@ -37,6 +37,7 @@
 
     <div class="yes-no-block">
         <material-yes-no-buttons
+                [yesDisabled]="!canProceed()"
                 reverse yesHighlighted
                 yesText="ОК"
                 noText="Отмена"

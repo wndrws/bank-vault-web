@@ -29,9 +29,9 @@ import 'package:bank_vault/src/routing/route_paths.dart';
 class RegisterComponent {
   DateRange limitToRange = DateRange(Date.today().add(years: -150), Date.today());
 
-  String serial;
-  String firstName;
-  String lastName;
+  String serial = "";
+  String firstName = "";
+  String lastName = "";
   String patronymic;
   Date birthDate;
   String phone;
@@ -52,5 +52,9 @@ class RegisterComponent {
   void cancel() {
     _userService.logout();
     _location.back();
+  }
+
+  bool canProceed() {
+    return serial.isNotEmpty && firstName.isNotEmpty && lastName.isNotEmpty;
   }
 }
