@@ -44,9 +44,10 @@ class RegisterComponent {
   RegisterComponent(this._location, this._router, this._userService);
 
   Future<NavigationResult> register() async {
-    await _userService.register(serial, firstName, lastName, patronymic,
-        birthDate?.format(DateFormat("yyyy-MM-dd")) ?? "", email, phone);
-    return _router.navigate(RoutePaths.home.toUrl());
+    if(await _userService.register(serial, firstName, lastName, patronymic,
+        birthDate?.format(DateFormat("yyyy-MM-dd")) ?? "", email, phone)) {
+      return _router.navigate(RoutePaths.home.toUrl());
+    }
   }
 
   void cancel() {
