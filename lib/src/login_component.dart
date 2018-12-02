@@ -39,6 +39,10 @@ class LoginComponent implements OnActivate {
     return _router.navigate(RoutePaths.register.toUrl());
   }
 
+  bool canProceed() {
+    return username.isNotEmpty && password.isNotEmpty;
+  }
+
   @override
   void onActivate(RouterState previous, RouterState current) {
     if (_userService.isUserLoggedIn()) {
