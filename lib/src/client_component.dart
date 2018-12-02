@@ -9,7 +9,7 @@ import 'package:bank_vault/src/services/user_service.dart';
   styleUrls: ['client_component.css'],
   templateUrl: 'client_component.html',
 )
-class ClientComponent implements OnInit {
+class ClientComponent implements OnInit, CanActivate {
   final LocalUserStorage _localUserStorage;
   final UserService _userService;
   final Router _router;
@@ -22,4 +22,9 @@ class ClientComponent implements OnInit {
   }
 
   void logout() => _userService.logout();
+
+  @override
+  Future<bool> canActivate(RouterState current, RouterState next) async {
+    return _userService.isUserLoggedIn();
+  }
 }
