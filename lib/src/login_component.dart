@@ -36,7 +36,12 @@ class LoginComponent implements OnActivate {
 
   Future<NavigationResult> register() async {
     _localUserStorage.setCredentials(username, password);
-    return _router.navigate(RoutePaths.register.toUrl());
+    if (await _userService.isUserRegistered()) {
+      message = "Пользователь с таким именем уже зарегистрирован";
+      return _router.navigate(_router.current.toUrl());
+    } else {
+      return _router.navigate(RoutePaths.register.toUrl());
+    }
   }
 
   bool canProceed() {

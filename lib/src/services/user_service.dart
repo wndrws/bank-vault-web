@@ -61,4 +61,10 @@ class UserService {
   bool isUserLoggedIn() {
     return _userStorage.currentUserId != LocalUserStorage.NO_USER_ID;
   }
+
+  Future<bool> isUserRegistered() async {
+    final response = await _http.get(
+        ServerApi.isRegisteredUrl + "?username=${_userStorage.username}");
+    return response.body == "true";
+  }
 }
