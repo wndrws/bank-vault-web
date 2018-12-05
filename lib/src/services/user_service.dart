@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:bank_vault/src/api/http_status.dart';
 import 'package:bank_vault/src/api/server_api.dart';
 import 'package:http/http.dart';
 import 'package:dialog/dialog.dart';
@@ -8,6 +8,8 @@ import 'package:dialog/dialog.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 
 class UserService {
+  static const int UNPROCESSABLE_ENTITY_STATUS = 422;
+
   final LocalUserStorage _userStorage;
 
   final Client _http;
@@ -46,15 +48,15 @@ class UserService {
 
   bool _processResponseForRegistration(final Response response) {
     switch (response.statusCode) {
-      case HttpStatus.OK:
+      case HttpStatus.ok:
         final int userId = int.parse(response.body);
         _userStorage.reset();
         _userStorage.setCurrentUser(userId);
         return true;
-      case HttpStatus.BAD_REQUEST:
+      case HttpStatus.badRequest:
         alert("Пользователь с такими данными уже зарегистрирован!");
         return false;
-      case HttpStatus.UNPROCESSABLE_ENTITY:
+      case UNPROCESSABLE_ENTITY_STATUS:
         alert("Введен некорректный или дублирующийся серийный номер!");
         return false;
       default:

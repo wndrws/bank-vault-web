@@ -1,8 +1,12 @@
+import 'dart:async';
+import 'package:intl/intl.dart';
+
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:bank_vault/src/routing/route_paths.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 import 'package:bank_vault/src/services/user_service.dart';
+import 'package:bank_vault/src/services/web_time_service.dart';
 
 @Component(
   selector: 'client-component',
@@ -10,15 +14,22 @@ import 'package:bank_vault/src/services/user_service.dart';
   templateUrl: 'client_component.html',
 )
 class ClientComponent implements OnInit, CanActivate {
-  final LocalUserStorage _localUserStorage;
-  final UserService _userService;
-  final Router _router;
+  String clockText = "01.01.1980 0:00:00";
 
-  ClientComponent(this._localUserStorage, this._userService, this._router);
+  final LocalUserStorage _localUserStorage;
+  final Router _router;
+  final UserService _userService;
+  final WebTimeService _timeService;
+
+  final _clockFormatter = DateFormat("dd.MM.yyyy H:mm:ss");
+
+  ClientComponent(this._localUserStorage,  this._router, this._userService,
+      this._timeService);
 
   @override
   void ngOnInit() {
     print("current user id = ${_localUserStorage.currentUserId}");
+    _schedulePeriodicClockUpdate();
   }
 
   void logout() => _userService.logout();
@@ -26,5 +37,16 @@ class ClientComponent implements OnInit, CanActivate {
   @override
   Future<bool> canActivate(RouterState current, RouterState next) async {
     return _userService.isUserLoggedIn();
+  }
+
+  void _schedulePeriodicClockUpdate() {
+    Timer.periodic(Duration(seconds: 1), (_) async {
+      try {
+        final DateTime dt = await _timeService.getCurrentLocalDateTime();
+        clockText = _clockFormatter.format(dt);
+      } on Exception catch (e) {
+        print("Failed to fetch time! Reason: ${e}");
+      }
+    });
   }
 }
