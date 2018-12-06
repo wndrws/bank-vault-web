@@ -2,41 +2,7 @@
     <div id="g-title" class="big-text">Мои банковские ячейки</div>
     <div id="g-clock" class="clock big-text">{{ clockText }}</div>
     <div id="g-table" class="scrollable-x">
-        <table>
-            <tr>
-                <th>Номер</th>
-                <th>Статус</th>
-                <th>Размер</th>
-                <th>Содержимое</th>
-                <th>Начало аренды</th>
-                <th>Аренда (дней)</th>
-            </tr>
-            <!-- Example data -->
-            <tr>
-                <td>123</td>
-                <td>Оплачено</td>
-                <td>Большой</td>
-                <td>Ring of Power</td>
-                <td>19.09.2018</td>
-                <td>15</td>
-            </tr>
-            <tr>
-                <td>456</td>
-                <td>Ожидает одобрения</td>
-                <td>Средний</td>
-                <td> </td>
-                <td>20.09.2018</td>
-                <td>150</td>
-            </tr>
-            <tr>
-                <td>789</td>
-                <td>Ожидает оплаты</td>
-                <td>Малый</td>
-                <td> </td>
-                <td>21.09.2018</td>
-                <td>50</td>
-            </tr>
-        </table>
+        <cell-table-component></cell-table-component>
     </div>
     <div id="g-menu" class="flex">
         <img id="logo" src="vault.png"/> <br/>

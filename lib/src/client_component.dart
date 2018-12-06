@@ -7,14 +7,16 @@ import 'package:bank_vault/src/routing/route_paths.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 import 'package:bank_vault/src/services/user_service.dart';
 import 'package:bank_vault/src/services/web_time_service.dart';
+import 'package:bank_vault/src/cell_table_component.dart';
 
 @Component(
   selector: 'client-component',
   styleUrls: ['client_component.css'],
   templateUrl: 'client_component.html',
+  directives: [CellTableComponent]
 )
 class ClientComponent implements OnInit, CanActivate {
-  String clockText = "01.01.1980 0:00:00";
+  String clockText = "";
 
   final LocalUserStorage _localUserStorage;
   final Router _router;

@@ -1,0 +1,35 @@
+table {
+    margin-top: -5px;
+    font-size: 90%;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid lightgrey;
+}
+
+th, td {
+    padding: 5px;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #dde8f5;
+}
+
+tr.selected {
+    color: white;
+    background-color: #0096c9;
+}
+
+th {
+    background: linear-gradient(to bottom, #ebebeb, #d9d9d9);
+}
