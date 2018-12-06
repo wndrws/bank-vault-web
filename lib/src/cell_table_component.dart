@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:angular/angular.dart';
+import 'package:angular_components/material_spinner/material_spinner.dart';
 
 import 'package:bank_vault/src/data/cell.dart';
 import 'package:bank_vault/src/services/cell_table_service.dart';
@@ -9,7 +10,7 @@ import 'package:bank_vault/src/services/cell_table_service.dart';
   selector: 'cell-table-component',
   styleUrls: ['cell_table_component.css'],
   templateUrl: 'cell_table_component.html',
-  directives: [coreDirectives]
+  directives: [coreDirectives, MaterialSpinnerComponent]
 )
 class CellTableComponent implements OnInit {
   static const Duration _POLLING_INTERVAL = Duration(seconds: 3);

@@ -19,3 +19,7 @@
         <td>{{ cell.leaseDays }}</td>
     </tr>
 </table>
+<div class="loading-placeholder" *ngIf="allCells === null">
+    <material-spinner></material-spinner>
+    <span style="margin-left: 10px">Загрузка списка ячеек...</span>
+</div>

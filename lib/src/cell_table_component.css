@@ -1,4 +1,5 @@
 table {
+    align-self: flex-start;
     margin-top: -5px;
     font-size: 90%;
     border-collapse: collapse;
@@ -32,4 +33,15 @@ tr.selected {
 
 th {
     background: linear-gradient(to bottom, #ebebeb, #d9d9d9);
+}
+
+material-spinner {
+    border-color: #0096c9;
+}
+
+.loading-placeholder {
+    align-self: center;
+    flex-grow: 1;
+    margin-top: 30px;
+    font-style: italic;
 }
