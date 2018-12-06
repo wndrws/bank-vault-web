@@ -7,5 +7,7 @@ class ServerApi {
 
   static const String isRegisteredUrl = _root + "isRegistered";
 
+  static String cellsByClientUrl(int id) => _root + "info/cellsByClient/$id";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
 }
