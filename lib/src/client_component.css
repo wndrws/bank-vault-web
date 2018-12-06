@@ -19,6 +19,7 @@
 .clock {
     text-align: right;
     color: gray;
+    user-select: none;
 }
 
 #logo {
