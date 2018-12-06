@@ -2,8 +2,10 @@ import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 
 import 'package:bank_vault/src/routing/routes.dart';
+import 'package:bank_vault/src/services/cell_application_service.dart';
 import 'package:bank_vault/src/services/cell_table_service.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
+import 'package:bank_vault/src/services/modal_forms_service.dart';
 import 'package:bank_vault/src/services/user_service.dart';
 import 'package:bank_vault/src/services/web_time_service.dart';
 
@@ -19,7 +21,9 @@ import 'package:bank_vault/src/services/web_time_service.dart';
       ClassProvider(UserService),
       ClassProvider(LocalUserStorage),
       ClassProvider(WebTimeService),
-      ClassProvider(CellTableService)
+      ClassProvider(CellTableService),
+      ClassProvider(CellApplicationService),
+      ClassProvider(ModalFormsService)
     ],
     exports: [Routes]
 )

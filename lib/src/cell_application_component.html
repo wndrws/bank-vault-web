@@ -1,0 +1,30 @@
+<div class="back"></div>
+<div class="container">
+    <div class="heading big-text">
+        Выбор ячейки
+    </div>
+    <div style="height: 20px"></div>
+    <form>
+        <div class="form-line">
+            <label for="size">Желаемый размер:</label>
+            <select id="size" required [(ngModel)]="size">
+                <option *ngFor="let s of sizes" [value]="s['id']">{{ s['name'] }}</option>
+            </select>
+        </div>
+        <div class="form-line">
+            <label for="leaseDays">Период аренды (дней):</label>
+            <input type="number" id="leaseDays" required [(ngModel)]="leaseDays"/>
+        </div>
+    </form>
+    <div class="message">{{ errorMessage }}</div>
+    <div class="yes-no-block moved20px-left">
+        <material-yes-no-buttons
+                [yesDisabled]="!canApply()"
+                reverse yesHighlighted
+                yesText="ОК"
+                noText="Отмена"
+                (yes)="apply()"
+                (no)="cancel()">
+        </material-yes-no-buttons>
+    </div>
+</div>

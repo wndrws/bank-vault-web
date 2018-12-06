@@ -7,13 +7,15 @@ import 'package:bank_vault/src/routing/route_paths.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 import 'package:bank_vault/src/services/user_service.dart';
 import 'package:bank_vault/src/services/web_time_service.dart';
+import 'package:bank_vault/src/services/modal_forms_service.dart';
 import 'package:bank_vault/src/cell_table_component.dart';
+import 'package:bank_vault/src/cell_application_component.dart';
 
 @Component(
   selector: 'client-component',
   styleUrls: ['client_component.css'],
   templateUrl: 'client_component.html',
-  directives: [CellTableComponent]
+  directives: [CellTableComponent, CellApplicationComponent]
 )
 class ClientComponent implements OnInit, CanActivate {
   String clockText = "";
@@ -22,11 +24,12 @@ class ClientComponent implements OnInit, CanActivate {
   final Router _router;
   final UserService _userService;
   final WebTimeService _timeService;
+  final ModalFormsService _modalFormsService;
 
   final _clockFormatter = DateFormat("dd.MM.yyyy H:mm:ss");
 
   ClientComponent(this._localUserStorage,  this._router, this._userService,
-      this._timeService);
+      this._timeService, this._modalFormsService);
 
   @override
   void ngOnInit() {
@@ -50,5 +53,11 @@ class ClientComponent implements OnInit, CanActivate {
         print("Failed to fetch time! Reason: ${e}");
       }
     });
+  }
+
+  bool get applicationFormHidden => _modalFormsService.applicationFormHidden;
+
+  void displayApplicationForm() {
+    _modalFormsService.applicationFormHidden = false;
   }
 }

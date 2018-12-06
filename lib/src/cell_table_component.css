@@ -28,7 +28,7 @@ tr:hover {
 
 tr.selected {
     color: white;
-    background-color: #0096c9;
+    background-color: #1E88E5;
 }
 
 th {
@@ -36,7 +36,7 @@ th {
 }
 
 material-spinner {
-    border-color: #0096c9;
+    border-color: #1E88E5;
 }
 
 .loading-placeholder {

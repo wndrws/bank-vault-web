@@ -6,9 +6,11 @@
     </div>
     <div id="g-menu" class="flex">
         <img id="logo" src="vault.png"/> <br/>
-        <button>Арендовать ячейку</button> <br/>
+        <button (click)="displayApplicationForm()">Арендовать ячейку</button> <br/>
+        <button disabled="disabled">Оплатить аренду</button> <br/>
         <button disabled="disabled">Положить ценность</button> <br/>
         <button disabled="disabled">Изъять ценность</button> <br/>
     </div>
     <div id="g-exit" class="exit-box"><a href="" class="subtle-a" (click)="logout()">Выход</a></div>
 </div>
+<cell-application-component [hidden]="applicationFormHidden"></cell-application-component>

@@ -9,5 +9,7 @@ class ServerApi {
 
   static String cellsByClientUrl(int id) => _root + "info/cellsByClient/$id";
 
+  static String applyUrl(int clientId) => _root + "apply/client/$clientId";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
 }
