@@ -29,9 +29,14 @@ class CellTableComponent implements OnInit {
 
   void _schedulePeriodicTableUpdate() {
     Timer.periodic(_POLLING_INTERVAL, (_) async {
-      allCells = await _cellTableService.getCells();
-      selectedCell = allCells.firstWhere(
-              (cell) => cell.id == selectedCell?.id ?? "", orElse: () => null);
+      try {
+        allCells = await _cellTableService.getCells();
+        selectedCell = allCells.firstWhere(
+                (cell) => cell.id == selectedCell?.id ?? "",
+            orElse: () => null);
+      } on Exception catch (e) {
+        print("Failed to fetch cells! Reason: ${e}");
+      }
     });
   }
 

@@ -16,7 +16,8 @@ class Cell {
 
   String get status {
     switch (_status) {
-      case "CREATED": return "Ожидает одобрения";
+      case "CREATED": return "Создана";
+      case "CELL_CHOSEN": return "Ожидает одобрения";
       case "APPROVED": return "Ождиает оплаты";
       case "PAID": return "Оплачена";
       default: print("Incorrect status $_status for cell $id"); return "";

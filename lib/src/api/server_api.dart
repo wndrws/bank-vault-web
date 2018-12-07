@@ -11,5 +11,7 @@ class ServerApi {
 
   static String applyUrl(int clientId) => _root + "apply/client/$clientId";
 
+  static String requestCellUrl(int appId) => _root + "apply/cell/$appId";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
 }
