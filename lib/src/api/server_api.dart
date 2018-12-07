@@ -13,5 +13,9 @@ class ServerApi {
 
   static String requestCellUrl(int appId) => _root + "apply/cell/$appId";
 
+  static const String acceptPaymentUrl = _root + "apply/payment";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
+
+  static const int UNPROCESSABLE_ENTITY_STATUS = 422;
 }

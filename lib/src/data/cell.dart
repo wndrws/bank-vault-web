@@ -1,8 +1,8 @@
 class Cell {
-  final String id, _status, _size, precious, leaseBegin;
+  final String id, statusId, _size, precious, leaseBegin;
   final int leaseDays, applicationId;
 
-  Cell(this.id, this._status, this._size, this.precious, this.leaseBegin,
+  Cell(this.id, this.statusId, this._size, this.precious, this.leaseBegin,
       this.leaseDays, this.applicationId);
 
   factory Cell.fromJson(Map<String, dynamic> json) => Cell(
@@ -15,12 +15,12 @@ class Cell {
       json['applicationId']);
 
   String get status {
-    switch (_status) {
+    switch (statusId) {
       case "CREATED": return "Создана";
       case "CELL_CHOSEN": return "Ожидает одобрения";
       case "APPROVED": return "Ождиает оплаты";
       case "PAID": return "Оплачена";
-      default: print("Incorrect status $_status for cell $id"); return "";
+      default: print("Incorrect status $statusId for cell $id"); return "";
     }
   }
 

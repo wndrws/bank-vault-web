@@ -1,0 +1,19 @@
+.moved20px-left {
+    margin-right: 20px;
+}
+
+.form-line {
+    margin-top: 8px;
+    display: inline-block;
+    width: 100%;
+}
+
+input {
+    margin: 5px;
+    width: 75px;
+}
+
+label {
+    margin-left: 3px;
+    margin-top: 8px;
+}

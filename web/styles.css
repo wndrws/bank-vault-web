@@ -21,6 +21,17 @@ body {
     font-size: 120%;
 }
 
+material-spinner {
+    border-color: #1E88E5;
+}
+
+.loading-placeholder {
+    align-self: center;
+    flex-grow: 1;
+    margin-top: 30px;
+    font-style: italic;
+}
+
 .yes-no-block {
     margin-top: 5px;
     align-self: center;

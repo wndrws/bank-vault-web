@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bank_vault/src/payment_component.dart';
 import 'package:intl/intl.dart';
 
 import 'package:angular/angular.dart';
@@ -15,10 +16,16 @@ import 'package:bank_vault/src/cell_application_component.dart';
   selector: 'client-component',
   styleUrls: ['client_component.css'],
   templateUrl: 'client_component.html',
-  directives: [CellTableComponent, CellApplicationComponent]
+  directives: [CellTableComponent, CellApplicationComponent, PaymentComponent]
 )
 class ClientComponent implements OnInit, CanActivate {
   String clockText = "";
+
+  @ViewChild("cellsTable")
+  CellTableComponent cellsTable;
+
+  @ViewChild("paymentForm")
+  PaymentComponent paymentForm;
 
   final LocalUserStorage _localUserStorage;
   final Router _router;
@@ -59,5 +66,16 @@ class ClientComponent implements OnInit, CanActivate {
 
   void displayApplicationForm() {
     _modalFormsService.applicationFormHidden = false;
+  }
+
+  bool canPay() => cellsTable.selectedCell?.statusId == "APPROVED" ?? false;
+
+  bool get paymentFormHidden => _modalFormsService.paymentFormHidden;
+
+  void startPayment() {
+    paymentForm.applicationId = cellsTable.selectedCell.applicationId;
+    paymentForm.cellId = cellsTable.selectedCell.id;
+    paymentForm.getInvoice();
+    _modalFormsService.paymentFormHidden = false;
   }
 }

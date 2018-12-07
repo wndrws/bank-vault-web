@@ -6,6 +6,7 @@ import 'package:bank_vault/src/services/cell_application_service.dart';
 import 'package:bank_vault/src/services/cell_table_service.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 import 'package:bank_vault/src/services/modal_forms_service.dart';
+import 'package:bank_vault/src/services/payment_service.dart';
 import 'package:bank_vault/src/services/user_service.dart';
 import 'package:bank_vault/src/services/web_time_service.dart';
 
@@ -23,7 +24,8 @@ import 'package:bank_vault/src/services/web_time_service.dart';
       ClassProvider(WebTimeService),
       ClassProvider(CellTableService),
       ClassProvider(CellApplicationService),
-      ClassProvider(ModalFormsService)
+      ClassProvider(ModalFormsService),
+      ClassProvider(PaymentService)
     ],
     exports: [Routes]
 )

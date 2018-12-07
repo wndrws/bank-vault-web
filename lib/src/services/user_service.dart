@@ -8,8 +8,6 @@ import 'package:dialog/dialog.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 
 class UserService {
-  static const int UNPROCESSABLE_ENTITY_STATUS = 422;
-
   final LocalUserStorage _userStorage;
 
   final Client _http;
@@ -56,7 +54,7 @@ class UserService {
       case HttpStatus.badRequest:
         alert("Пользователь с такими данными уже зарегистрирован!");
         return false;
-      case UNPROCESSABLE_ENTITY_STATUS:
+      case ServerApi.UNPROCESSABLE_ENTITY_STATUS:
         alert("Введен некорректный или дублирующийся серийный номер!");
         return false;
       default:
