@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bank_vault/src/enums/cell_application_status.dart';
 import 'package:bank_vault/src/payment_component.dart';
 import 'package:intl/intl.dart';
 
@@ -68,7 +69,8 @@ class ClientComponent implements OnInit, CanActivate {
     _modalFormsService.applicationFormHidden = false;
   }
 
-  bool canPay() => cellsTable.selectedCell?.statusId == "APPROVED" ?? false;
+  bool canPay() => cellsTable.selectedCell
+      ?.statusId == CellApplicationStatus.APPROVED ?? false;
 
   bool get paymentFormHidden => _modalFormsService.paymentFormHidden;
 
