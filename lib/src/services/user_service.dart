@@ -20,6 +20,7 @@ class UserService {
         final String phone = ""]) async {
     if (_userStorage.username.isEmpty) {
       alert("Логин и пароль потеряли актуальность, введите их заново.");
+      return false;
     } else {
       final response = await _http.post(
           ServerApi.registerUrl,

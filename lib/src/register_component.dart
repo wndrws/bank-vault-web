@@ -48,6 +48,7 @@ class RegisterComponent {
         birthDate?.format(DateFormat("yyyy-MM-dd")) ?? "", email, phone)) {
       return _router.navigate(RoutePaths.home.toUrl());
     }
+    return _router.navigate(_router.current.toUrl());
   }
 
   void cancel() {
