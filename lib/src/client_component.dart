@@ -75,7 +75,7 @@ class ClientComponent implements OnInit, CanActivate {
   void startPayment() {
     paymentForm.applicationId = cellsTable.selectedCell.applicationId;
     paymentForm.cellId = cellsTable.selectedCell.id;
-    paymentForm.getInvoice();
+    paymentForm.initiatePayment();
     _modalFormsService.paymentFormHidden = false;
   }
 }

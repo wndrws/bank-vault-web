@@ -33,7 +33,7 @@ class PaymentComponent {
 
   List<Map<String, String>> get paymentMethods => _paymentMethods;
 
-  Future<void> getInvoice() async {
+  Future<void> initiatePayment() async {
     invoice = await _paymentService.getInvoiceForApplication(applicationId);
   }
 
