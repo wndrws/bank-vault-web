@@ -1,17 +1,16 @@
 import 'dart:async';
-import 'package:bank_vault/src/enums/cell_application_status.dart';
-import 'package:bank_vault/src/payment_component.dart';
 import 'package:intl/intl.dart';
 
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
-import 'package:bank_vault/src/routing/route_paths.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 import 'package:bank_vault/src/services/user_service.dart';
 import 'package:bank_vault/src/services/web_time_service.dart';
 import 'package:bank_vault/src/services/modal_forms_service.dart';
 import 'package:bank_vault/src/cell_table_component.dart';
 import 'package:bank_vault/src/cell_application_component.dart';
+import 'package:bank_vault/src/payment_component.dart';
+import 'package:bank_vault/src/enums/cell_application_status.dart';
 
 @Component(
   selector: 'client-component',
@@ -29,15 +28,14 @@ class ClientComponent implements OnInit, CanActivate {
   PaymentComponent paymentForm;
 
   final LocalUserStorage _localUserStorage;
-  final Router _router;
   final UserService _userService;
   final WebTimeService _timeService;
   final ModalFormsService _modalFormsService;
 
   final _clockFormatter = DateFormat("dd.MM.yyyy H:mm:ss");
 
-  ClientComponent(this._localUserStorage,  this._router, this._userService,
-      this._timeService, this._modalFormsService);
+  ClientComponent(this._localUserStorage, this._userService, this._timeService,
+      this._modalFormsService);
 
   @override
   void ngOnInit() {
