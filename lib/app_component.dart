@@ -7,11 +7,9 @@ import 'package:bank_vault/src/services/cell_table_service.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 import 'package:bank_vault/src/services/modal_forms_service.dart';
 import 'package:bank_vault/src/services/payment_service.dart';
+import 'package:bank_vault/src/services/precious_manipulation_service.dart';
 import 'package:bank_vault/src/services/user_service.dart';
 import 'package:bank_vault/src/services/web_time_service.dart';
-
-// AngularDart info: https://webdev.dartlang.org/angular
-// Components info: https://webdev.dartlang.org/components
 
 @Component(
     selector: 'my-app',
@@ -25,10 +23,11 @@ import 'package:bank_vault/src/services/web_time_service.dart';
       ClassProvider(CellTableService),
       ClassProvider(CellApplicationService),
       ClassProvider(ModalFormsService),
-      ClassProvider(PaymentService)
+      ClassProvider(PaymentService),
+      ClassProvider(PreciousManipulationService)
     ],
-    exports: [Routes]
-)
+    exports: [Routes])
 class AppComponent {
-  // Nothing here yet.
+      // AngularDart info: https://webdev.dartlang.org/angular
+      // Components info: https://webdev.dartlang.org/components
 }

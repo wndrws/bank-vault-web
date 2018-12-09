@@ -1,6 +1,7 @@
 import 'dart:async';
-import 'package:intl/intl.dart';
 
+import 'package:dialog/dialogs/alert.dart';
+import 'package:intl/intl.dart';
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
@@ -11,12 +12,18 @@ import 'package:bank_vault/src/cell_table_component.dart';
 import 'package:bank_vault/src/cell_application_component.dart';
 import 'package:bank_vault/src/payment_component.dart';
 import 'package:bank_vault/src/enums/cell_application_status.dart';
+import 'package:bank_vault/src/precious_manipulation_component.dart';
 
 @Component(
   selector: 'client-component',
   styleUrls: ['client_component.css'],
   templateUrl: 'client_component.html',
-  directives: [CellTableComponent, CellApplicationComponent, PaymentComponent]
+  directives: [
+    CellTableComponent,
+    CellApplicationComponent,
+    PaymentComponent,
+    PreciousManipulationComponent
+  ]
 )
 class ClientComponent implements OnInit, CanActivate {
   String clockText = "";
@@ -26,6 +33,9 @@ class ClientComponent implements OnInit, CanActivate {
 
   @ViewChild("paymentForm")
   PaymentComponent paymentForm;
+
+  @ViewChild("putForm")
+  PreciousManipulationComponent preciousManipComponent;
 
   final LocalUserStorage _localUserStorage;
   final UserService _userService;
@@ -73,9 +83,24 @@ class ClientComponent implements OnInit, CanActivate {
   bool get paymentFormHidden => _modalFormsService.paymentFormHidden;
 
   void startPayment() {
-    paymentForm.applicationId = cellsTable.selectedCell.applicationId;
-    paymentForm.cellId = cellsTable.selectedCell.id;
     paymentForm.initiatePayment();
     _modalFormsService.paymentFormHidden = false;
+  }
+
+  bool canPut() => (cellsTable.selectedCell
+      ?.statusId == CellApplicationStatus.PAID ?? false) &&
+      (cellsTable.selectedCell?.precious?.isEmpty ?? false);
+
+  bool get putFormHidden =>  _modalFormsService.putFormHidden;
+
+  void putPrecious() {
+    _modalFormsService.putFormHidden = false;
+  }
+
+  bool canGet() => cellsTable.selectedCell?.precious?.isNotEmpty ?? false;
+
+  Future<void> getPrecious() async {
+    final precious = await preciousManipComponent.get();
+    alert("Ценность ${precious.name} извлечена!");
   }
 }

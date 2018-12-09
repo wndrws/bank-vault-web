@@ -15,7 +15,13 @@ class ServerApi {
 
   static const String acceptPaymentUrl = _root + "apply/payment";
 
+  static String putPreciousUrl(int appId) => _root + "manipulate/put/$appId";
+
+  static String getPreciousUrl(int appId) => _root + "manipulate/get/$appId";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
 
   static const int UNPROCESSABLE_ENTITY_STATUS = 422;
 }
+
+class UnexpectedException implements Exception {}

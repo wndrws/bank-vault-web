@@ -3,11 +3,11 @@
     <div class="heading big-text">
         Оплата аренды
     </div>
-    <div style="height: 20px"></div>
     <div class="loading-placeholder" *ngIf="invoice === null">
         <material-spinner></material-spinner>
         <span style="margin-left: 10px">Загрузка платежной системы...</span>
     </div>
+    <div *ngIf="invoice != null" style="height: 20px"></div>
     <form *ngIf="invoice != null">
         <div class="form-line">
             Счет №: {{ invoice.id }} (ячейка {{ cellId }})

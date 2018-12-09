@@ -22,8 +22,7 @@ class CellApplicationService {
       case HttpStatus.ok:
         return int.parse(response.body);
       default:
-        print("Failed to apply for cell! Error ${response.statusCode} : " +
-            response.reasonPhrase);
+        print("Failed to apply for cell! Error ${response.statusCode}");
         return NO_APPLICATION;
     }
   }

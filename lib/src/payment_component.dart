@@ -1,4 +1,5 @@
 import 'package:angular/angular.dart';
+import 'package:angular_components/material_spinner/material_spinner.dart';
 import 'package:angular_components/material_yes_no_buttons/material_yes_no_buttons.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:bank_vault/src/data/invoice.dart';
@@ -14,14 +15,22 @@ const List<Map<String, String>> _paymentMethods = [
 
 @Component(
     selector: 'payment-component',
-    styleUrls: ['payment_component.css'],
     templateUrl: 'payment_component.html',
-    directives: [coreDirectives, formDirectives, MaterialYesNoButtonsComponent]
+    directives: [
+      coreDirectives,
+      formDirectives,
+      MaterialYesNoButtonsComponent,
+      MaterialSpinnerComponent
+    ]
 )
 class PaymentComponent {
-  Invoice invoice;
+  @Input()
   int applicationId;
+
+  @Input()
   String cellId;
+
+  Invoice invoice;
   String paymentMethod;
   int sum;
   String errorMessage = "";
@@ -54,6 +63,10 @@ class PaymentComponent {
   }
 
   void cancel() {
+    paymentMethod = null;
+    sum = null;
+    invoice = null;
+    errorMessage = "";
     _modalFormsService.paymentFormHidden = true;
   }
 

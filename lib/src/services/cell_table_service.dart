@@ -20,8 +20,7 @@ class CellTableService {
       case HttpStatus.ok:
         return _extractData(json.decode(response.body));
       default:
-        print("Failed to fetch cells! Error ${response.statusCode} : " +
-            response.reasonPhrase);
+        print("Failed to fetch cells! Error ${response.statusCode}");
         return <Cell>[];
     }
   }

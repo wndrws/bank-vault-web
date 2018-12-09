@@ -13,7 +13,6 @@ const List<Map<String, String>> _sizes = [
 
 @Component(
     selector: 'cell-application-component',
-    styleUrls: ['cell_application_component.css'],
     templateUrl: 'cell_application_component.html',
     directives: [coreDirectives, formDirectives, MaterialYesNoButtonsComponent]
 )

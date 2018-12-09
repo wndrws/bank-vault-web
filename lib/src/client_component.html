@@ -8,10 +8,22 @@
         <img id="logo" src="vault.png"/> <br/>
         <button (click)="displayApplicationForm()">Арендовать ячейку</button> <br/>
         <button [disabled]="!canPay()" (click)="startPayment()">Оплатить аренду</button> <br/>
-        <button disabled="disabled">Положить ценность</button> <br/>
-        <button disabled="disabled">Изъять ценность</button> <br/>
+        <button [disabled]="!canPut()" (click)="putPrecious()">Положить ценность</button> <br/>
+        <button [disabled]="!canGet()" (click)="getPrecious()">Изъять ценность</button> <br/>
     </div>
     <div id="g-exit" class="exit-box"><a href="" class="subtle-a" (click)="logout()">Выход</a></div>
 </div>
-<cell-application-component [hidden]="applicationFormHidden"></cell-application-component>
-<payment-component #paymentForm [hidden]="paymentFormHidden"></payment-component>
+<cell-application-component
+        [hidden]="applicationFormHidden">
+</cell-application-component>
+<payment-component
+        #paymentForm
+        [hidden]="paymentFormHidden"
+        [applicationId]="cellsTable.selectedCell?.applicationId"
+        [cellId]="cellsTable.selectedCell?.id">
+</payment-component>
+<precious-manipulation-component
+        #putForm
+        [hidden]="putFormHidden"
+        [applicationId]="cellsTable.selectedCell?.applicationId">
+</precious-manipulation-component>

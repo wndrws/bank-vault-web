@@ -18,8 +18,7 @@ class PaymentService {
       case HttpStatus.ok:
         return Invoice.fromJson(json.decode(response.body));
       default:
-        print("Failed to issue invoice! Error ${response.statusCode} : " +
-            response.reasonPhrase);
+        print("Failed to issue invoice! Error ${response.statusCode}");
         return null;
     }
   }
@@ -37,8 +36,7 @@ class PaymentService {
         alert("Недостаточно средств для оплаты счета!");
         return sum;
       default:
-        print("Failed to pay for invoice! Error ${response.statusCode} : " +
-            response.reasonPhrase);
+        print("Failed to pay for invoice! Error ${response.statusCode}");
         return sum;
     }
   }
@@ -51,8 +49,7 @@ class PaymentService {
     if (response.statusCode == HttpStatus.ok) {
       return true;
     } else {
-      print("Failed to accept payment! Error ${response.statusCode} : " +
-          response.reasonPhrase);
+      print("Failed to accept payment! Error ${response.statusCode}");
       return false;
     }
   }
