@@ -23,7 +23,7 @@ class PreciousManipulationService {
         throw PreciousNotFitException();
       default:
         print("Failed to put precious! Error ${response.statusCode}");
-        throw UnexpectedException();
+        throw UnexpectedException(response.statusCode);
     }
   }
 
@@ -34,7 +34,7 @@ class PreciousManipulationService {
         return Precious.fromJson(json.decode(response.body));
       default:
         print("Failed to get precious! Error ${response.statusCode}");
-        throw UnexpectedException();
+        throw UnexpectedException(response.statusCode);
     }
   }
 }

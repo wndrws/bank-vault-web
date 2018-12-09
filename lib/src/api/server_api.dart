@@ -24,4 +24,10 @@ class ServerApi {
   static const int UNPROCESSABLE_ENTITY_STATUS = 422;
 }
 
-class UnexpectedException implements Exception {}
+class UnexpectedException implements Exception {
+  final int errorCode;
+
+  UnexpectedException(this.errorCode);
+
+  String get message => "Что-то пошло не так..\n(код $errorCode)";
+}

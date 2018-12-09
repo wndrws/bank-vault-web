@@ -4,6 +4,7 @@ import 'package:angular_forms/angular_forms.dart';
 
 import 'package:bank_vault/src/services/cell_application_service.dart';
 import 'package:bank_vault/src/services/modal_forms_service.dart';
+import 'package:bank_vault/src/api/server_api.dart';
 
 const List<Map<String, String>> _sizes = [
   { 'id': 'SMALL', 'name': 'Малый (1 л)'},
@@ -29,14 +30,18 @@ class CellApplicationComponent {
   List<Map<String, String>> get sizes => _sizes;
 
   Future<void> apply() async {
-    final int appId = await _applicationService.createApplication();
-    print("Application created! ID: $appId");
-    final bool isCellFound = await _applicationService
-        .requestCell(appId, size, leaseDays);
-    if (!isCellFound) {
-      errorMessage = "Нет свободных ячеек данного размера";
-    } else {
-      _modalFormsService.applicationFormHidden = true;
+    try {
+      final int appId = await _applicationService.createApplication();
+      final bool isCellFound = await _applicationService.requestCell(appId, size, leaseDays);
+      if (!isCellFound) {
+        errorMessage = "Нет свободных ячеек данного размера";
+      } else {
+        _modalFormsService.applicationFormHidden = true;
+      }
+    } on InvalidUserException {
+      errorMessage = "Пользователь не найден!";
+    } on UnexpectedException catch (e) {
+      errorMessage = e.message;
     }
   }
 

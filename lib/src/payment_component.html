@@ -3,38 +3,48 @@
     <div class="heading big-text">
         Оплата аренды
     </div>
-    <div class="loading-placeholder" *ngIf="invoice === null">
-        <material-spinner></material-spinner>
-        <span style="margin-left: 10px">Загрузка платежной системы...</span>
-    </div>
     <div *ngIf="invoice != null" style="height: 20px"></div>
-    <form *ngIf="invoice != null">
-        <div class="form-line">
-            Счет №: {{ invoice.id }} (ячейка {{ cellId }})
+    <div *ngIf="!finished">
+        <div class="loading-placeholder" *ngIf="invoice === null">
+            <material-spinner></material-spinner>
+            <span style="margin-left: 10px">Загрузка платежной системы...</span>
         </div>
-        <div class="form-line">
-            К оплате: {{ invoice.sum }} руб.
+        <form *ngIf="invoice != null">
+            <div class="form-line">
+                Счет №: {{ invoice.id }} (ячейка {{ cellId }})
+            </div>
+            <div class="form-line">
+                К оплате: {{ invoice.sum }} руб.
+            </div>
+            <div class="form-line">
+                <label for="method">Способ оплаты:</label>
+                <select id="method" required [(ngModel)]="paymentMethod">
+                    <option *ngFor="let m of paymentMethods" [value]="m['id']">{{ m['name'] }}</option>
+                </select>
+            </div>
+            <div class="form-line">
+                <label for="sum">Сумма:</label>
+                <input type="number" id="sum" required [(ngModel)]="sum"/>
+            </div>
+        </form>
+        <div class="message">{{ errorMessage }}</div>
+        <div class="yes-no-block">
+            <material-yes-no-buttons
+                    [yesDisabled]="!canSubmitPayment()"
+                    reverse yesHighlighted
+                    yesText="Оплатить"
+                    noText="Отмена"
+                    (yes)="pay()"
+                    (no)="closeForm()">
+            </material-yes-no-buttons>
         </div>
-        <div class="form-line">
-            <label for="method">Способ оплаты:</label>
-            <select id="method" required [(ngModel)]="paymentMethod">
-                <option *ngFor="let m of paymentMethods" [value]="m['id']">{{ m['name'] }}</option>
-            </select>
-        </div>
-        <div class="form-line">
-            <label for="sum">Сумма:</label>
-            <input type="number" id="sum" required [(ngModel)]="sum"/>
-        </div>
-    </form>
-    <div class="message">{{ errorMessage }}</div>
-    <div class="yes-no-block moved20px-left">
-        <material-yes-no-buttons
-                [yesDisabled]="!canSubmitPayment()"
-                reverse yesHighlighted
-                yesText="Оплатить"
-                noText="Отмена"
-                (yes)="pay()"
-                (no)="cancel()">
-        </material-yes-no-buttons>
+    </div>
+    <div *ngIf="finished" class="flex">
+        <p>Оплата прошла успешно!</p>
+        <p>Сдача: <b>{{ change }} руб.</b></p>
+        <div style="height: 10px"></div>
+        <material-fab mini class="green-tick" (click)="closeForm()">
+            <material-icon icon="check"></material-icon>
+        </material-fab>
     </div>
 </div>

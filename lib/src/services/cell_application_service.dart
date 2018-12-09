@@ -7,8 +7,6 @@ import 'package:bank_vault/src/api/server_api.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
 
 class CellApplicationService {
-  static const int NO_APPLICATION = -1;
-
   final LocalUserStorage _userStorage;
 
   final Client _http;
@@ -21,9 +19,11 @@ class CellApplicationService {
     switch (response.statusCode) {
       case HttpStatus.ok:
         return int.parse(response.body);
+      case ServerApi.UNPROCESSABLE_ENTITY_STATUS:
+        throw InvalidUserException();
       default:
         print("Failed to apply for cell! Error ${response.statusCode}");
-        return NO_APPLICATION;
+        throw UnexpectedException(response.statusCode);
     }
   }
 
@@ -35,9 +35,10 @@ class CellApplicationService {
       case HttpStatus.ok:
         return response.body == 'true';
       default:
-        print("Failed request cell! Error ${response.statusCode} : " +
-            response.reasonPhrase);
-        return false;
+        print("Failed to request cell! Error ${response.statusCode}");
+        throw UnexpectedException(response.statusCode);
     }
   }
 }
+
+class InvalidUserException implements Exception {}

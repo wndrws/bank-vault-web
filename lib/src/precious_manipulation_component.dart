@@ -4,6 +4,7 @@ import 'package:angular_forms/angular_forms.dart';
 import 'package:bank_vault/src/data/precious.dart';
 import 'package:bank_vault/src/services/modal_forms_service.dart';
 import 'package:bank_vault/src/services/precious_manipulation_service.dart';
+import 'package:bank_vault/src/api/server_api.dart';
 
 @Component(
     selector: 'precious-manipulation-component',
@@ -27,11 +28,12 @@ class PreciousManipulationComponent {
 
   Future<void> put() async {
     try {
-      await _manipulationService.putPrecious(
-          applicationId, Precious(volume.round(), name));
+      await _manipulationService.putPrecious(applicationId, Precious(volume.round(), name));
       _modalFormsService.putFormHidden = true;
     } on PreciousNotFitException {
-      errorMessage = "Этот предмет слишком велик для выбранной ячейки";
+      errorMessage = "Этот предмет слишком велик для выбранной ячейки!";
+    } on UnexpectedException catch (e) {
+      errorMessage = e.message;
     }
   }
 

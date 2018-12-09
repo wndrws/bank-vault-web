@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:bank_vault/src/api/payment_system_api.dart';
 import 'package:bank_vault/src/api/server_api.dart';
 import 'package:bank_vault/src/data/invoice.dart';
-import 'package:dialog/dialogs/alert.dart';
 import 'package:http/http.dart';
 
 class PaymentService {
@@ -17,9 +16,11 @@ class PaymentService {
     switch (response.statusCode) {
       case HttpStatus.ok:
         return Invoice.fromJson(json.decode(response.body));
+      case ServerApi.UNPROCESSABLE_ENTITY_STATUS:
+        throw InvoiceIssueException();
       default:
         print("Failed to issue invoice! Error ${response.statusCode}");
-        return null;
+        throw UnexpectedException(response.statusCode);
     }
   }
 
@@ -28,16 +29,16 @@ class PaymentService {
     final Response response = await _http.post(
         PaymentSystemApi.payUrl(sum, paymentMethod),
         headers: PaymentSystemApi.headers,
-        body: json.encode(invoice));
+        body: json.encode(invoice)
+    );
     switch (response.statusCode) {
       case HttpStatus.ok:
         return int.parse(response.body);
       case ServerApi.UNPROCESSABLE_ENTITY_STATUS:
-        alert("Недостаточно средств для оплаты счета!");
-        return sum;
+        throw NotEnoughMoneyException();
       default:
         print("Failed to pay for invoice! Error ${response.statusCode}");
-        return sum;
+        throw UnexpectedException(response.statusCode);
     }
   }
 
@@ -54,3 +55,7 @@ class PaymentService {
     }
   }
 }
+
+class InvoiceIssueException implements Exception {}
+
+class NotEnoughMoneyException implements Exception {}
