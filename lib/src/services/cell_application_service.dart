@@ -33,7 +33,7 @@ class CellApplicationService {
         body: json.encode({ 'size': size, 'leaseDays': leaseDays }));
     switch (response.statusCode) {
       case HttpStatus.ok:
-        return true;
+        return response.body == 'true';
       default:
         print("Failed request cell! Error ${response.statusCode} : " +
             response.reasonPhrase);
