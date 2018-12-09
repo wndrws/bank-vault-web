@@ -36,7 +36,7 @@ class CellApplicationComponent {
       if (!isCellFound) {
         errorMessage = "Нет свободных ячеек данного размера";
       } else {
-        _modalFormsService.applicationFormHidden = true;
+        closeForm();
       }
     } on InvalidUserException {
       errorMessage = "Пользователь не найден!";
@@ -45,8 +45,11 @@ class CellApplicationComponent {
     }
   }
 
-  void cancel() {
+  void closeForm() {
     _modalFormsService.applicationFormHidden = true;
+    size = null;
+    leaseDays = null;
+    errorMessage = "";
   }
 
   bool canApply() => size != null && leaseDays is int && leaseDays > 0;

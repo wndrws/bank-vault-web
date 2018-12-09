@@ -29,5 +29,5 @@ class UnexpectedException implements Exception {
 
   UnexpectedException(this.errorCode);
 
-  String get message => "Что-то пошло не так..\n(код $errorCode)";
+  String get message => "Что-то пошло не так... (код $errorCode)";
 }
