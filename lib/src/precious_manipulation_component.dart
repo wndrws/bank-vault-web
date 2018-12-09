@@ -29,7 +29,7 @@ class PreciousManipulationComponent {
   Future<void> put() async {
     try {
       await _manipulationService.putPrecious(applicationId, Precious(volume.round(), name));
-      _modalFormsService.putFormHidden = true;
+      closeForm();
     } on PreciousNotFitException {
       errorMessage = "Этот предмет слишком велик для выбранной ячейки!";
     } on UnexpectedException catch (e) {
@@ -41,7 +41,7 @@ class PreciousManipulationComponent {
     return _manipulationService.getPrecious(applicationId);
   }
 
-  void cancel() {
+  void closeForm() {
     errorMessage = "";
     name = "";
     volume = 0.0;
