@@ -37,6 +37,10 @@
     background-color: #f9f9f9;
 }
 
+.list-elem:hover {
+    background-color: #dde8f5;
+}
+
 .list-elem.selected {
     color: white;
     background-color: #1E88E5;
