@@ -2,9 +2,9 @@
 @import url(https://fonts.googleapis.com/css?family=Material+Icons);
 
 body {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 5vw;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5vw;
 }
 
 * {
@@ -19,6 +19,10 @@ body {
 
 .big-text {
     font-size: 120%;
+}
+
+.centered {
+    text-align: center;
 }
 
 material-spinner {

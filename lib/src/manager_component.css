@@ -1,0 +1,92 @@
+#grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr auto;
+    background: #f4f4f4;
+    padding: 3px;
+    width: 75%;
+    align-self: center;
+}
+
+#g-list { grid-column: 1; grid-row: 2 / span 2; }
+#g-view { grid-column: 2; grid-row: 2; }
+#g-buttons { grid-column: 2; grid-row: 3; }
+#g-left-title { grid-column: 1; grid-row: 1; }
+#g-right-title { grid-column: 2; grid-row: 1; }
+
+#grid > div {
+    padding: 10px;
+}
+
+#list-container {
+    padding-top: -10px;
+    border: 1px solid lightgrey;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.list-elem {
+    padding: 7px;
+}
+
+.list-elem:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.list-elem:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.list-elem.selected {
+    color: white;
+    background-color: #1E88E5;
+}
+
+.cell-name {
+    font-size: small;
+}
+
+table {
+    font-size: 90%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    padding: 5px 0 5px 0;
+}
+
+td.c1 {
+    width: 40%;
+}
+
+td.c2 {
+    width: 60%;
+}
+
+.subtitle {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.big-button {
+    padding: 10px;
+    font-size: large;
+    margin: 0 5px 0 5px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: darkred;
+}
