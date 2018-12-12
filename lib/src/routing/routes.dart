@@ -5,6 +5,7 @@ import 'package:bank_vault/src/routing/route_paths.dart';
 import 'package:bank_vault/src/client_component.template.dart' as client_component;
 import 'package:bank_vault/src/login_component.template.dart' as login_component;
 import 'package:bank_vault/src/register_component.template.dart' as register_component;
+import 'package:bank_vault/src/manager_component.template.dart' as manager_component;
 
 class Routes {
   static final root = RouteDefinition.redirect(
@@ -27,5 +28,10 @@ class Routes {
     component: client_component.ClientComponentNgFactory
   );
 
-  static final all = <RouteDefinition>[root, login, register, home];
+  static final manager = RouteDefinition(
+    routePath: RoutePaths.manager,
+    component: manager_component.ManagerComponentNgFactory
+  );
+
+  static final all = <RouteDefinition>[root, login, register, home, manager];
 }
