@@ -20,11 +20,14 @@ class CellTableService {
       case HttpStatus.ok:
         return _extractData(json.decode(response.body));
       default:
-        print("Failed to fetch cells! Error ${response.statusCode}");
-        return <Cell>[];
+        throw UnexpectedException(response.statusCode);
     }
   }
 
   List<Cell> _extractData(List<dynamic> cellsJsonArray) =>
       cellsJsonArray.map((json) => Cell.fromJson(json)).toList();
+
+  Future<void> approve() async {
+
+  }
 }

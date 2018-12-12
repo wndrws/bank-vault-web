@@ -5,6 +5,7 @@ import 'package:bank_vault/src/routing/routes.dart';
 import 'package:bank_vault/src/services/cell_application_service.dart';
 import 'package:bank_vault/src/services/cell_table_service.dart';
 import 'package:bank_vault/src/services/local_user_storage.dart';
+import 'package:bank_vault/src/services/manager_service.dart';
 import 'package:bank_vault/src/services/modal_forms_service.dart';
 import 'package:bank_vault/src/services/payment_service.dart';
 import 'package:bank_vault/src/services/precious_manipulation_service.dart';
@@ -24,7 +25,8 @@ import 'package:bank_vault/src/services/web_time_service.dart';
       ClassProvider(CellApplicationService),
       ClassProvider(ModalFormsService),
       ClassProvider(PaymentService),
-      ClassProvider(PreciousManipulationService)
+      ClassProvider(PreciousManipulationService),
+      ClassProvider(ManagerService)
     ],
     exports: [Routes])
 class AppComponent {

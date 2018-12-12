@@ -8,17 +8,15 @@
         </div>
         <div id="g-list">
             <div id="list-container">
-                <div class="list-elem">
-                    <div class="cell-name">Ячейка M021</div>
-                    <div>Иванов Иван</div>
+                <div class="loading-placeholder" *ngIf="leasingInfo === null">
+                    <material-spinner></material-spinner>
                 </div>
-                <div class="list-elem">
-                    <div class="cell-name">Ячейка S011</div>
-                    <div>Иванов Иван</div>
-                </div>
-                <div class="list-elem selected">
-                    <div class="cell-name">Ячейка S001</div>
-                    <div>Иванов Иван</div>
+                <div class="list-elem"
+                     *ngFor="let info of leasingInfo"
+                     (click)="selectApplication(info)"
+                     [class.selected]="info === selectedInfo">
+                    <div class="cell-name">Ячейка {{ info.cellId }}</div>
+                    <div>{{ info.leaseholder.name }}</div>
                 </div>
             </div>
         </div>
@@ -27,23 +25,23 @@
             <table>
                 <tr>
                     <td class="c1">Паспорт:</td>
-                    <td class="c2">1234567890</td>
+                    <td class="c2">{{ selectedInfo?.leaseholder?.serial }}</td>
                 </tr>
                 <tr>
                     <td class="c1">ФИО:</td>
-                    <td class="c2">Иванов Иван Иванович</td>
+                    <td class="c2">{{ selectedInfo?.leaseholder?.fullName }}</td>
                 </tr>
                 <tr>
                     <td class="c1">Дата рождения:</td>
-                    <td class="c2">01.01.1980</td>
+                    <td class="c2">{{ selectedInfo?.leaseholder?.birthday }}</td>
                 </tr>
                 <tr>
                     <td class="c1">Телефон:</td>
-                    <td class="c2">+79653698854</td>
+                    <td class="c2">{{ selectedInfo?.leaseholder?.phone }}</td>
                 </tr>
                 <tr>
                     <td class="c1">E-mail:</td>
-                    <td class="c2">ivan@russia.com</td>
+                    <td class="c2">{{ selectedInfo?.leaseholder?.email }}</td>
                 </tr>
             </table>
             <div style="height: 30px"></div>
@@ -51,15 +49,15 @@
             <table>
                 <tr>
                     <td class="c1">Ячейка:</td>
-                    <td class="c2">S001</td>
+                    <td class="c2">{{ selectedInfo?.cellId }}</td>
                 </tr>
                 <tr>
                     <td class="c1">Период:</td>
-                    <td class="c2">60 дн.</td>
+                    <td class="c2">{{ selectedInfo?.leaseDays }} дн.</td>
                 </tr>
                 <tr>
                     <td class="c1">Стоимость:</td>
-                    <td class="c2">3000 руб.</td>
+                    <td class="c2">{{ selectedInfo?.leaseCost }} руб.</td>
                 </tr>
             </table>
         </div>

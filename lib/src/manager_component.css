@@ -21,8 +21,9 @@
 #list-container {
     padding-top: -10px;
     border: 1px solid lightgrey;
-    height: 100%;
+    height: 400px;
     background-color: #ffffff;
+    overflow-y: scroll;
 }
 
 .list-elem {

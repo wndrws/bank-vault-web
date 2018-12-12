@@ -32,8 +32,7 @@ class CellTableComponent implements OnInit {
       try {
         allCells = await _cellTableService.getCells();
         selectedCell = allCells.firstWhere(
-                (cell) => cell.id == selectedCell?.id ?? "",
-            orElse: () => null);
+                (cell) => cell.id == selectedCell?.id ?? "", orElse: () => null);
       } on Exception catch (e) {
         print("Failed to fetch cells! Reason: ${e}");
       }

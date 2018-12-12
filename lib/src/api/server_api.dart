@@ -19,6 +19,8 @@ class ServerApi {
 
   static String getPreciousUrl(int appId) => _root + "manipulate/get/$appId";
 
+  static const String applicationsInfoUrl = _root + "info/applications";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
 
   static const int UNPROCESSABLE_ENTITY_STATUS = 422;
