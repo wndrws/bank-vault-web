@@ -21,6 +21,10 @@ class ServerApi {
 
   static const String applicationsInfoUrl = _root + "info/applications";
 
+  static String approveApplicationUrl(int appId) => _root + "manage/approve/$appId";
+
+  static String declineApplicationUrl(int appId) => _root + "manage/decline/$appId";
+
   static const Map<String, String> headers = {'Content-Type': 'application/json'};
 
   static const int UNPROCESSABLE_ENTITY_STATUS = 422;

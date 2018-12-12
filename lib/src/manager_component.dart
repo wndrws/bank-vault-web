@@ -31,7 +31,7 @@ class ManagerComponent implements OnInit {
   void _schedulePeriodicListUpdate() {
     Timer.periodic(_POLLING_INTERVAL, (_) async {
       try {
-        _updateList();
+        await _updateList();
       } on Exception catch (e) {
         print("Failed to fetch cell applications! Reason: ${e}");
       }
@@ -45,4 +45,14 @@ class ManagerComponent implements OnInit {
   }
 
   void selectApplication(final LeasingInfo info) => selectedInfo = info;
+
+  Future<void> approveApplication() async {
+    await _managerService.approveApplication(selectedInfo.cellAppId);
+    _updateList();
+  }
+
+  Future<void> declineApplication() async {
+    await _managerService.declineApplication(selectedInfo.cellAppId);
+    _updateList();
+  }
 }

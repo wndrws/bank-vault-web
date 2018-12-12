@@ -26,4 +26,18 @@ class ManagerService {
       appsJsonArray.map((json) => LeasingInfo.fromJson(json))
           .where((app) => app.status == CellApplicationStatus.CELL_CHOSEN)
           .toList();
+
+  Future<void> approveApplication(final int appId) async {
+    final Response response = await _http.patch(ServerApi.approveApplicationUrl(appId));
+    if (response.statusCode != HttpStatus.ok) {
+      throw UnexpectedException(response.statusCode);
+    }
+  }
+
+  Future<void> declineApplication(final int appId) async {
+    final Response response = await _http.patch(ServerApi.declineApplicationUrl(appId));
+    if (response.statusCode != HttpStatus.ok) {
+      throw UnexpectedException(response.statusCode);
+    }
+  }
 }
